@@ -21,16 +21,18 @@
 
 ##  address(住所) テーブル
 
-| post_code        | string  | null: false |
-| prefecture       | string  | null: false |
-| city             | string  | null: false |
-| address          | string  | null: false |
-| building_name    | string  |             |
-| phone_number     | string  | null: false |
+| post_code        | integer | null: false                     |
+| prefecture_id    | integer | null: false                     |
+| city             | string  | null: false                     |
+| address          | string  | null: false                     |
+| building_name    | string  |                                 |
+| phone_number     | string  | null: false                     |
+| purchase_id      | integer | null: false, foreign_key: true  |
 
 ### Association
 
 - belongs_to :user
+- belongs_to :purchase
 
 ##  purchase(商品購入) テーブル(中間テーブル)
 
@@ -38,12 +40,14 @@
 | ---------------- | ------- | ------------------------------ |
 | user_id          | integer | null: false, foreign_key: true | 
 | item_id          | integer | null: false, foreign_key: true |
+| purchase_id      | integer | null: false, foreign_key: true |
 
 
 ### Association
 
 - belongs_to :user
 - belongs_to :item
+- belongs_to :addres
 
 
 ## items(商品出品) テーブル
@@ -51,7 +55,7 @@
 | Column           | Type    | Options                        |
 | ---------------- | --------| ------------------------------ |
 | name             | string  | null: false                    |
-| price            | string  | null: false                    |
+| price            | integer | null: false                    |
 | description      | text    | null: false                    |
 | status_id        | integer | null: false                    |
 | shipping_cost_id | integer | null: false                    |
@@ -63,4 +67,4 @@
 ### Association
 
 - belongs_to :user
-- has_many :purchases
+- has_one :purchases
