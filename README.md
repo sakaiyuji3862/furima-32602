@@ -17,11 +17,10 @@
 
 - has_many :purchases  
 - has_many :items
-- belongs_to :addres
 
 ##  address(住所) テーブル
 
-| post_code        | integer | null: false                     |
+| post_code        | string  | null: false                     |
 | prefecture_id    | integer | null: false                     |
 | city             | string  | null: false                     |
 | address          | string  | null: false                     |
@@ -31,7 +30,6 @@
 
 ### Association
 
-- belongs_to :user
 - belongs_to :purchase
 
 ##  purchase(商品購入) テーブル(中間テーブル)
@@ -40,14 +38,12 @@
 | ---------------- | ------- | ------------------------------ |
 | user_id          | integer | null: false, foreign_key: true | 
 | item_id          | integer | null: false, foreign_key: true |
-| purchase_id      | integer | null: false, foreign_key: true |
 
 
 ### Association
 
 - belongs_to :user
 - belongs_to :item
-- belongs_to :addres
 
 
 ## items(商品出品) テーブル
@@ -67,4 +63,4 @@
 ### Association
 
 - belongs_to :user
-- has_one :purchases
+- has_one :purchase
