@@ -2,21 +2,20 @@
 
 ##  users(ユーザー管理)テーブル
 
-| Column           | Type   | Options     |
-| ---------------- | ------ | ----------- |
-| nickname         | string | null: false |
-| email            | string | null: false |
-| password         | string | null: false |
-| image            | string |             |
-| family_name      | string | null: false |
-| first_name       | string | null: false |
-| family_name_kana | string | null: false |
-| first_name_kana  | string | null: false |
-| birth_day        | string | null: false |
+| Column             | Type   | Options                       |
+| ------------------ | ------ | ----------------------------- |
+| nickname           | string | null: false                   |
+| email              | string | null: false, uniqueness: true |
+| encrypted_password | string | null: false                   |
+| family_name        | string | null: false                   |
+| first_name         | string | null: false                   |
+| family_name_kana   | string | null: false                   |
+| first_name_kana    | string | null: false                   |
+| birth_day          | date   | null: false                   |
 
 ### Association
 
-- has_many :purchase
+- belongs_to :purchase
 - has_many :products
 
 ##  purchase(商品購入) テーブル
@@ -28,12 +27,20 @@
 | first_name       | string  | null: false                    |
 | family_name_kana | string  | null: false                    |
 | first_name_kana  | string  | null: false                    |
-| post_code        | string  | null: false                    |
-| prefecture       | string  | null: false                    |
-| city             | string  | null: false                    |
-| address          | string  | null: false                    |
-| building_name    | string  |                                |
-| phone_number     | string  |                                |
+
+### Association
+
+- belongs_to :user
+- belongs_to :addres
+
+##  address(住所) テーブル
+
+| post_code        | string  | null: false |
+| prefecture       | string  | null: false |
+| city             | string  | null: false |
+| address          | string  | null: false |
+| building_name    | string  |             |
+| phone_number     | string  |             |
 
 ### Association
 
@@ -41,15 +48,18 @@
 
 ## product(商品出品) テーブル
 
-| Column      | Type       | Options                        |
-| ----------- | ---------- | ------------------------------ |
-| name        | string     | null: false                    |
-| price       | string     | null: false                    |
-| description | string     | null: false                    |
-| image       | string     |                                |
-| user_id     | integer    | null: false, foreign_key: true |
+| Column        | Type    | Options                        |
+| ------------- | --------| ------------------------------ |
+| name          | string  | null: false                    |
+| price         | string  | null: false                    |
+| description   | text    | null: false                    |
+| status        | string  | null: false                    |
+| shipping_cost | string  | null: false                    |
+| shipping_days | string  | null: false                    |
+| prefecture_id | integer | null: false, foreign_key: true |
+| category_id   | integer | null: false, foreign_key: true |
+| user_id       | integer | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-
