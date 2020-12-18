@@ -10,54 +10,6 @@ RSpec.describe User, type: :model do
         it "記入欄の全てが存在すれば登録できること" do
           expect(@user).to be_valid
         end
-        
-        it "ニックネームが存在すれば登録できること" do
-          @user.nickname = "aaaaa"
-          expect(@user).to be_valid
-        end
-
-        it "メールアドレスは@があれば登録できること" do
-          @user.email = "sample@gmail.com"
-          expect(@user).to be_valid
-        end
-
-        it "パスワードが6文字以上で半角数字なら登録できること" do
-          @user.password = "0000aa"
-          expect(@user).to be_valid
-        end
-
-        it "パスワードとパスワード（確認用）が、一致すれば登録できること" do
-          @user.password = "0000aa"
-          @user.password_confirmation = "0000aa"
-          expect(@user).to be_valid
-        end
-
-        it "ユーザーの名字が全角（漢字・ひらがな・カタカナ）であれば登録できること" do
-          @user.family_name = "酒井"
-          expect(@user).to be_valid
-        end
-
-        it "ユーザーの名前が全角（漢字・ひらがな・カタカナ）であれば登録できること" do
-          @user.first_name = "悠治"
-          expect(@user).to be_valid
-        end
-
-
-        it "ユーザーの名字のフリガナが全角（カタカナ）であれば登録できること" do
-          @user.family_name_kana = "サカイ"
-          expect(@user).to be_valid
-        end
-
-        it "ユーザーの名前のフリガナが全角（カタカナ）であれば登録できること" do
-          @user.first_name_kana = "ユウジ"
-          expect(@user).to be_valid
-        end
-
-        it "生年月日が存在すれば登録できること" do
-          @user.birth_day = "1985-05-26"
-          expect(@user).to be_valid
-        end
-
       end
 
 
