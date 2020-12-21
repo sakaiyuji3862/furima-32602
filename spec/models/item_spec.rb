@@ -32,34 +32,34 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Description can't be blank")
       end
 
-      it 'カテゴリーの選択が必須であること' do
-        @item.category_id = nil
+      it 'カテゴリーが1（---）の場合出品できない' do
+        @item.category_id =  1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category can't be blank")
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
       end
 
-      it '商品の状態の選択が必須であること' do
-        @item.status_id = nil
+      it '商品の状態が1（---）の場合出品できない' do
+        @item.status_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Status can't be blank")
+        expect(@item.errors.full_messages).to include("Status must be other than 1")
       end
 
-      it '配送料の負担の選択が必須であること' do
-        @item.shipping_cost_id = nil
+      it '配送料の負担が1（---）の場合出品できない' do
+        @item.shipping_cost_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping cost can't be blank")
+        expect(@item.errors.full_messages).to include("Shipping cost must be other than 1")
       end
 
-      it '配送元の地域の選択が必須であること' do
-        @item.prefecture_id = nil
+      it '配送元の地域が1（---）の場合出品できない' do
+        @item.prefecture_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+        expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
       end
 
-      it '発想までの日数の選択が必須であること' do
-        @item.shipping_days_id = nil
+      it '発想までの日数が1（---）の場合出品できない' do
+        @item.shipping_days_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping days can't be blank")
+        expect(@item.errors.full_messages).to include("Shipping days must be other than 1")
       end
 
       it '販売金額が必須であること' do
