@@ -19,7 +19,7 @@ class Item < ApplicationRecord
         validates :description
         validates :status_id, numericality: { other_than: 1 }
         validates :shipping_cost_id, numericality: { other_than: 1 }
-        validates :shipping_days_id, numericality: { other_than: 1 }
+        validates :shipping_day_id, numericality: { other_than: 1 }
         validates :prefecture_id, numericality: { other_than: 1 }
         validates :category_id, numericality: { other_than: 1 }
         validates :image
