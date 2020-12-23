@@ -1,5 +1,8 @@
 class ItemsController < ApplicationController
-    before_action :authenticate_user!, only: :new
+    before_action :set_find, only: [:show, :edit, :update]
+    before_action :authenticate_user!, only: [:new, :edit]
+    before_action :contributor_confirmation, only: :edit
+   
     def index
         @items = Item.includes(:user).order("created_at DESC")
     end
@@ -18,7 +21,17 @@ class ItemsController < ApplicationController
     end
 
     def show
-        @item = Item.find(params[:id])
+    end
+
+    def edit
+    end
+
+    def update
+        if @item.update(item_params)
+            redirect_to item_path(@item)
+        else
+           render :edit
+        end
     end
     
 
@@ -30,4 +43,15 @@ class ItemsController < ApplicationController
                                     :shipping_day_id, :prefecture_id,
                                     :category_id,:image).merge(user_id: current_user.id)
     end
+
+    def set_find
+        @item = Item.find(params[:id])
+    end
+
+    def contributor_confirmation
+        unless current_user == @item.user
+            redirect_to root_path 
+        end
+    end
+    
 end
