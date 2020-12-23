@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-    before_action :set_find, only: [:show, :edit, :update]
+    before_action :set_find, only: [:show, :edit, :update, :destroy]
     before_action :authenticate_user!, only: [:new, :edit]
     before_action :contributor_confirmation, only: :edit
    
@@ -30,10 +30,17 @@ class ItemsController < ApplicationController
         if @item.update(item_params)
             redirect_to item_path(@item)
         else
-           render :edit
+            render :edit
         end
     end
     
+    def destroy
+        if @item.destroy
+            redirect_to root_path
+        else
+            redirect_to root_path
+        end
+    end
 
     private
 
