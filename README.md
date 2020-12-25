@@ -6,7 +6,7 @@
 | ------------------ | ------ | ---------------------------- |
 | nickname           | string | null: false                  |
 | email              | string | null: false, uniqueness:true |
-| encrypted_password | string | null: false                  |
+| encrypted_password | string | null: false                  | 
 | family_name        | string | null: false                  |
 | first_name         | string | null: false                  |
 | family_name_kana   | string | null: false                  |
@@ -15,7 +15,7 @@
 
 ### Association
 
-- has_many :purchases  
+- has_many :orders
 - has_many :items
 
 ##  address(住所) テーブル
@@ -26,13 +26,13 @@
 | address          | string  | null: false                     |
 | building_name    | string  |                                 |
 | phone_number     | string  | null: false                     |
-| purchase_id      | integer | null: false, foreign_key: true  |
+| order_id         | integer | null: false, foreign_key: true  |
 
 ### Association
 
-- belongs_to :purchase
+- belongs_to :order
 
-##  purchase(商品購入) テーブル(中間テーブル)
+##  orders(商品購入) テーブル(中間テーブル)
 
 | Column           | Type    | Options                        |
 | ---------------- | ------- | ------------------------------ |
@@ -63,4 +63,4 @@
 ### Association
 
 - belongs_to :user
-- has_one :purchase
+- has_one :order
