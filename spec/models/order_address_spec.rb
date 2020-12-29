@@ -10,6 +10,12 @@ RSpec.describe OrderAddress, type: :model do
       it "記入欄の全てを正しく記述すれば登録できること" do
         expect(@order_address).to be_valid
       end
+
+      it "建物名が空でも登録できること" do
+        @order_address.building_name = ""
+        @order_address.valid?
+      end
+
     end
 
     context '住所が登録できないとき' do
