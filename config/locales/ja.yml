@@ -1,0 +1,8 @@
+ja:
+ activerecord:
+   attributes:
+     user:
+       nickname: ニックネーム
+     item:
+       name: テキスト
+       image: 画像
